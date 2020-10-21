@@ -1,0 +1,26 @@
+:root {
+  --color-primary: #221e22;
+  --color-secundary: #dad2d8;
+  --color-secundary-opaque: #dad2d842;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-secundary);
+  background-color: var(--color-primary);
+}
+
+body,
+input,
+button,
+label,
+textarea {
+  font: 400 16px Tajawal, sans-serif !important;
+}
