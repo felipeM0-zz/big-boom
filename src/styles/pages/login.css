@@ -33,6 +33,36 @@
   font-weight: normal;
 }
 
+.first-box.next {
+  animation: 0.5s ZoomOut forwards;
+}
+
+.first-box {
+  animation: 0.5s ZoomIn forwards;
+}
+
+@keyframes ZoomOut {
+  from {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8, 1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes ZoomIn {
+  from {
+    transform: scale(1.6, 1.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
 /*  */
 
 .footer-login {
@@ -43,14 +73,22 @@
   position: fixed;
 }
 
-.footer-login span {
+.footer-login .dv-msg-footer-inside > span {
   margin-right: 0.3rem;
 }
 
-.footer-login a {
+.footer-login .dv-msg-footer-inside button {
   text-decoration: none;
-  color: #7047e2;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-login .dv-msg-footer-inside button span {
   font-weight: 800;
+  color: #7047e2;
 }
 
 /*  */
@@ -67,9 +105,9 @@
   height: 55px;
 }
 
-.msg-top > div:nth-child(1),
-.msg-middle > div:nth-child(1),
-.msg-footer > div:nth-child(1) {
+.msg-top > .dv-msg-top-inside:nth-child(1),
+.msg-middle > .dv-msg-middle-inside,
+.msg-footer > .dv-msg-footer-inside:nth-child(1) {
   position: absolute;
 }
 
