@@ -23,92 +23,14 @@
   border-radius: 3.5rem;
 }
 
-.first-box > div.msg-top > div:nth-child(1) > p,
-.first-box > div.msg-top > div:nth-child(2) > p {
+.first-box .msg-top div p {
   font-size: 1.4rem;
   font-weight: 800;
 }
 
-.first-box > div.msg-top > div:nth-child(2) > span {
+.first-box .msg-top .dv-msg-top-back span {
   color: #ffffff59;
   font-weight: normal;
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 1.5rem 0;
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp input,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp input {
-  width: 15rem;
-  height: 2.5rem;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--color-secundary);
-  border-bottom: 1px solid var(--color-secundary-opaque);
-  transition: all 0.2s;
-  padding: 1.3rem 0;
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp input::placeholder,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp input::placeholder {
-  color: var(--color-secundary-opaque);
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp input:focus,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp input:focus {
-  border-bottom-color: var(--color-secundary);
-  border-bottom-width: 2px;
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp input.error,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp input.error {
-  border-bottom-color: #ff6347;
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front .dv-inp span,
-.first-box .flip-box .flip-box-inner .flip-box-back .dv-inp span {
-  font-size: 0.8rem;
-  margin-top: 0.4rem;
-  color: #ffffff59;
-}
-
-/*  */
-
-.first-box .flip-box .flip-box-inner .flip-box-front button:nth-child(2),
-.first-box .flip-box .flip-box-inner .flip-box-back button:nth-child(2) {
-  width: 15rem;
-  border-radius: 7.5rem;
-  text-transform: none;
-  font-weight: 800 !important;
-  color: var(--color-primary);
-}
-
-.first-box .flip-box .flip-box-inner .flip-box-front button:nth-child(2) span,
-.first-box .flip-box .flip-box-inner .flip-box-back button:nth-child(2) span {
-  height: 1.8rem;
-}
-
-.first-box
-  .flip-box
-  .flip-box-inner
-  .flip-box-front
-  button:nth-child(2).Mui-disabled,
-.first-box
-  .flip-box
-  .flip-box-inner
-  .flip-box-back
-  button:nth-child(2).Mui-disabled {
-  background: var(--color-secundary-opaque);
-  color: #ffffff59;
-  font-weight: normal !important;
-  opacity: 0.5;
 }
 
 /*  */
@@ -134,6 +56,7 @@
 /*  */
 
 .msg-top,
+.msg-middle,
 .msg-footer {
   transition: transform 1s;
   transform-style: preserve-3d;
@@ -145,16 +68,19 @@
 }
 
 .msg-top > div:nth-child(1),
+.msg-middle > div:nth-child(1),
 .msg-footer > div:nth-child(1) {
   position: absolute;
 }
 
 .msg-top.is-flipped,
+.msg-middle.is-flipped,
 .msg-footer.is-flipped {
   transform: rotateX(180deg);
 }
 
 .dv-msg-top-inside,
+.dv-msg-middle-inside,
 .dv-msg-footer-inside {
   text-align: center;
   -webkit-backface-visibility: hidden;
@@ -162,78 +88,102 @@
 }
 
 .dv-msg-top-back,
+.dv-msg-middle-back,
 .dv-msg-footer-back {
   transform: rotateX(180deg);
 }
 
-/*  */
-
-.flip-box {
-  background-color: transparent;
-  width: 100%;
-  perspective: 1000px;
-}
-
-.flip-box-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.flip-box-inner.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.flip-box-front,
-.flip-box-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  opacity: 0;
-  animation: FadeIn 1s forwards;
-
+.dv-msg-middle-inside {
   display: flex;
-  margin-top: 3rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.flip-box-back {
-  transform: rotateY(180deg);
-  margin-top: 4.2rem;
+.dv-msg-middle-back {
+  padding-top: 2.25rem;
 }
 
-.flip-box-back button:nth-child(3) {
-  margin-top: 1rem;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background: transparent;
-  color: var(--color-secundary);
-}
-
-.flip-box-back > div {
+.dv-msg-middle-back .dv-inp {
   position: relative;
 }
 
-.flip-box > div > .flip-box-back > div svg {
+.dv-msg-middle-back .dv-inp svg {
   position: absolute;
+  font-size: 1.2rem;
   right: 0;
-  top: 13px;
-  font-size: 1.3rem;
-  color: #ffffff59;
+  top: 0.75rem;
   cursor: pointer;
 }
 
-.flip-box-inner.is-flipped .flip-box-front {
-  animation: FadeOut 1s forwards;
+.dv-msg-middle-back button:last-child {
+  border: none;
+  margin-top: 1rem;
+  background: transparent;
+  color: var(--color-secundary);
+  outline: none;
+  cursor: pointer;
 }
+
+.dv-msg-middle-inside .dv-inp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem 0;
+}
+
+.dv-msg-middle-inside .dv-inp input {
+  width: 15rem;
+  height: 2.5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--color-secundary);
+  border-bottom: 1px solid var(--color-secundary-opaque);
+  transition: all 0.2s;
+  padding: 1.3rem 1.5rem 1.3rem 0;
+}
+
+.dv-msg-middle-inside .dv-inp input::placeholder {
+  color: var(--color-secundary-opaque);
+}
+
+.dv-msg-middle-inside .dv-inp input:focus {
+  border-bottom-color: var(--color-secundary);
+  border-bottom-width: 2px;
+}
+
+.dv-msg-middle-inside .dv-inp input.error {
+  border-bottom-color: #ff6347;
+}
+
+.dv-msg-middle-inside .dv-inp span {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  color: #ffffff59;
+}
+
+.dv-msg-middle-inside .btn-principal {
+  width: 15rem;
+  border-radius: 7.5rem;
+  text-transform: none;
+  font-weight: 800 !important;
+  color: var(--color-primary);
+}
+
+.dv-msg-middle-inside .btn-principal.Mui-disabled {
+  background: var(--color-secundary-opaque);
+  color: #ffffff59;
+  font-weight: normal !important;
+  opacity: 0.5;
+}
+
+.dv-msg-middle-inside .btn-principal span {
+  height: 1.8rem;
+}
+
+/*  */
 
 .bg-move-gradient {
   opacity: 0.2;
@@ -253,21 +203,35 @@
   animation: movebg 5s infinite alternate;
 }
 
-@keyframes FadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.msg-middle.is-flipped > .dv-msg-middle-inside:nth-child(1),
+.msg-middle > .dv-msg-middle-inside:nth-child(2) {
+  animation: 1s FadeOut forwards;
+}
+
+.msg-middle > .dv-msg-middle-inside:nth-child(1),
+.msg-middle.is-flipped > .dv-msg-middle-inside:nth-child(2) {
+  animation: 1s FadeIn forwards;
 }
 
 @keyframes FadeOut {
   from {
     opacity: 1;
+    visibility: visible;
   }
   to {
     opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
   }
 }
 

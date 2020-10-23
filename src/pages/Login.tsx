@@ -22,14 +22,8 @@ const Login = () => {
 
   const returnLink = () => {
     setShowPass(false);
-    setTimeout(() => {
-      setEmail("");
-      setPassword("");
-    }, 250);
-  };
-
-  const activePass = () => {
-    setShowInputPass(!showInputPass);
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -50,8 +44,8 @@ const Login = () => {
           </div>
 
           <div className="flip-box">
-            <div className={`flip-box-inner ${showPass ? "is-flipped" : ""}`}>
-              <div className="flip-box-front">
+            <div className={`msg-middle ${showPass ? "is-flipped" : ""}`}>
+              <div className="dv-msg-middle-inside">
                 <div className="dv-inp">
                   <input
                     required
@@ -72,39 +66,54 @@ const Login = () => {
                 </div>
 
                 <Button
+                  type="button"
                   onClick={handleEmail}
                   variant="contained"
+                  className="btn-principal"
                   disabled={!EmailValidator.validate(email)}
                 >
                   Continuar
                 </Button>
               </div>
-              <div className="flip-box-back">
+              <div className="dv-msg-middle-inside dv-msg-middle-back">
                 <div className="dv-inp">
                   <input
                     required
-                    type={`${showInputPass ? "text" : "password"}`}
                     name="Password"
                     value={password}
                     placeholder="Agora a sua senha"
+                    type={`${showInputPass ? "text" : "password"}`}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={`${
+                      password.length > 0
+                        ? password.length >= 6
+                          ? ""
+                          : "error"
+                        : ""
+                    }`}
                   />
                   <span>No mínimo 6 caracteres</span>
 
                   {!showInputPass ? (
                     <Tooltip placement="top" title="Exibir senha">
-                      <VisibilityIcon onClick={activePass} />
+                      <VisibilityIcon
+                        onClick={() => setShowInputPass(!showInputPass)}
+                      />
                     </Tooltip>
                   ) : (
                     <Tooltip placement="top" title="Ocultar senha">
-                      <VisibilityOffIcon onClick={activePass} />
+                      <VisibilityOffIcon
+                        onClick={() => setShowInputPass(!showInputPass)}
+                      />
                     </Tooltip>
                   )}
                 </div>
 
                 <Button
+                  type="submit"
                   onClick={() => {}}
                   variant="contained"
+                  className="btn-principal"
                   disabled={password.length < 5}
                 >
                   Logar
