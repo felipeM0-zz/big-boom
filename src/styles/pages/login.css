@@ -223,6 +223,61 @@
 
 /*  */
 
+.swal2-container .swal2-popup {
+  background: #432b88;
+  padding: 2rem;
+}
+
+.swal2-container .swal2-popup .swal2-header,
+.swal2-container .swal2-popup .swal2-content,
+.swal2-container .swal2-popup .swal2-actions {
+  padding: 0;
+}
+
+.swal2-container .swal2-popup .swal2-content input {
+  color: var(--color-secundary);
+  border: 2px solid var(--color-secundary);
+  border-radius: 1rem;
+  height: 3rem;
+  padding: 1.2rem 1rem;
+}
+
+.swal2-container .swal2-popup .swal2-content input::placeholder {
+  color: #ffffff59;
+}
+
+.swal2-container .swal2-popup .swal2-header h2,
+.swal2-container .swal2-popup .swal2-header .swal2-icon,
+.swal2-container .swal2-popup .swal2-content .swal2-html-container {
+  color: var(--color-secundary);
+  border-color: var(--color-secundary);
+}
+
+.swal2-container .swal2-popup .swal2-header .swal2-icon .swal2-x-mark span {
+  background-color: var(--color-secundary);
+}
+
+.swal2-container .swal2-popup .swal2-actions {
+  margin: 0.5rem auto 0;
+}
+
+.swal2-container .swal2-popup .swal2-actions button {
+  border-radius: 1rem;
+  font-weight: 800 !important;
+}
+
+.swal2-container .swal2-popup .swal2-actions .swal2-confirm {
+  background: var(--color-primary);
+  color: var(--color-secundary);
+}
+
+.swal2-container .swal2-popup .swal2-actions .swal2-cancel {
+  color: var(--color-primary);
+  background: var(--color-secundary);
+}
+
+/*  */
+
 .bg-move-gradient {
   opacity: 0.2;
   position: absolute;

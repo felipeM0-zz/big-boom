@@ -1,7 +1,8 @@
 import React, { FormEvent, useState } from "react";
 import * as EmailValidator from "email-validator";
 import { Button, Tooltip } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import LogoImg from "../images/logo.png";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -28,7 +29,15 @@ const Login = () => {
       email.length <= 0 ||
       !EmailValidator.validate(email)
     ) {
-      alert("Verifique o campo EMAIL");
+      Swal.fire({
+        title: "Aviso",
+        html: "Campo <strong>EMAIL</strong> inválido",
+        icon: "error",
+        timer: 0,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#221e22",
+      });
+
       return;
     } else {
       setShowPass(true);
@@ -49,7 +58,13 @@ const Login = () => {
       email.length <= 0 ||
       !EmailValidator.validate(email)
     ) {
-      alert("Verifique o campo EMAIL");
+      Swal.fire({
+        title: "Aviso",
+        html: "Campo <strong>SENHA</strong> inválido",
+        icon: "error",
+        timer: 0,
+        confirmButtonText: "OK",
+      });
       return;
     }
 
@@ -79,6 +94,41 @@ const Login = () => {
     setShowPass(false);
     setEmail("");
     setPassword("");
+  };
+
+  const recoverPass = () => {
+    Swal.fire({
+      title: "Recuperação de senha",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off",
+        placeholder: "Insira seu email",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Enviar",
+      cancelButtonText: "Cancelar",
+      showLoaderOnConfirm: true,
+      preConfirm: async (login) => {
+        try {
+          const response = await fetch(``);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        } catch (error) {
+          Swal.showValidationMessage("Email não reconhecido");
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+      allowEscapeKey: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Confirmação",
+          html: `Link de recuperação enviado para <strong>${result.value.login}</strong>, verifique seu email (e não esqueça da caixa de SPAM)`,
+        });
+      }
+    });
   };
 
   return (
@@ -203,7 +253,7 @@ const Login = () => {
           </div>
           <div className="dv-msg-footer-inside dv-msg-footer-back">
             <span>Esqueceu sua senha?</span>
-            <button>
+            <button onClick={recoverPass}>
               <span>Clique aqui!</span>
             </button>
           </div>
