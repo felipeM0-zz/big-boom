@@ -10,6 +10,10 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import "../styles/pages/login.css";
 
+interface Teste {
+  input: HTMLInputElement;
+}
+
 const Login = () => {
   const history = useHistory();
 
@@ -108,26 +112,33 @@ const Login = () => {
       confirmButtonText: "Enviar",
       cancelButtonText: "Cancelar",
       showLoaderOnConfirm: true,
-      preConfirm: async (login) => {
-        try {
-          const response = await fetch(``);
-          if (!response.ok) {
-            throw new Error(response.statusText);
-          }
-          return response.json();
-        } catch (error) {
-          Swal.showValidationMessage("Email não reconhecido");
-        }
-      },
       allowOutsideClick: () => !Swal.isLoading(),
       allowEscapeKey: () => !Swal.isLoading(),
+      preConfirm: async (email) => {
+        const response = await fetch(
+          `https://raw.githubusercontent.com/felipeM0/big-boom/main/src/data/users.json`
+        );
+        return { email, res: response.json() };
+      },
     }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Confirmação",
-          html: `Link de recuperação enviado para <strong>${result.value.login}</strong>, verifique seu email (e não esqueça da caixa de SPAM)`,
-        });
-      }
+      Promise.resolve(result.value?.res).then((v) => {
+        for (let i = 0; i < v.length; i++) {
+          if (v[i].email === result.value?.email) {
+            Swal.fire({
+              title: `Olá, ${v[i].name}!`,
+              icon: "success",
+              html: `Link de recuperação enviado para <strong>${result.value?.email}</strong>, verifique seu email (e não esqueça da caixa de SPAM)`,
+            });
+            return;
+          }
+        }
+      });
+
+      Swal.fire({
+        title: "Aviso",
+        icon: "error",
+        text: "Email não reconhecido, verifique essa informação",
+      });
     });
   };
 
