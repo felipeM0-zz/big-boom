@@ -10,10 +10,6 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import "../styles/pages/login.css";
 
-interface Teste {
-  input: HTMLInputElement;
-}
-
 const Login = () => {
   const history = useHistory();
 
@@ -21,7 +17,16 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [showInputPass, setShowInputPass] = useState(false);
-  const [next, setNext] = useState("");
+
+  const msgSwal = (title: any, html: any, icon: any, timer: any) => {
+    Swal.fire({
+      title: title,
+      html: html,
+      icon: icon,
+      timer: timer,
+      confirmButtonText: "OK",
+    });
+  };
 
   const handleEmail = (e: FormEvent) => {
     e.preventDefault();
@@ -33,15 +38,7 @@ const Login = () => {
       email.length <= 0 ||
       !EmailValidator.validate(email)
     ) {
-      Swal.fire({
-        title: "Aviso",
-        html: "Campo <strong>EMAIL</strong> inválido",
-        icon: "error",
-        timer: 0,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#221e22",
-      });
-
+      msgSwal("Aviso", "Campo <strong>EMAIL</strong> inválido", "error", 0);
       return;
     } else {
       setShowPass(true);
@@ -62,13 +59,7 @@ const Login = () => {
       email.length <= 0 ||
       !EmailValidator.validate(email)
     ) {
-      Swal.fire({
-        title: "Aviso",
-        html: "Campo <strong>SENHA</strong> inválido",
-        icon: "error",
-        timer: 0,
-        confirmButtonText: "OK",
-      });
+      msgSwal("Aviso", "Campo <strong>EMAIL</strong> inválido", "error", 0);
       return;
     }
 
@@ -77,23 +68,23 @@ const Login = () => {
       password.length <= 0 ||
       (password.length >= 1 && password.length <= 5)
     ) {
-      alert("verifique o campo SENHA");
+      msgSwal("Aviso", "Campo <strong>SENHA</strong> inválido", "error", 0);
       return;
     } else {
-      setNext("next");
       goToNext("main");
     }
   };
 
   const goToNext = (url: String) => {
-    setTimeout(() => {
+    document.getElementById("f-box")?.classList.add("next");
+    let change = setTimeout(() => {
       history.push(`/${url}`);
     }, 500);
+    return () => clearTimeout(change);
   };
 
   const returnLink = () => {
     let elem = document.getElementById("pass-form")?.parentElement;
-
     elem?.classList.remove("is-flipped");
     setShowPass(false);
     setEmail("");
@@ -115,30 +106,39 @@ const Login = () => {
       allowOutsideClick: () => !Swal.isLoading(),
       allowEscapeKey: () => !Swal.isLoading(),
       preConfirm: async (email) => {
+        if (!EmailValidator.validate(email)) {
+          msgSwal("Aviso", "Email inválido", "error", 4000);
+          return;
+        }
+
         const response = await fetch(
           `https://raw.githubusercontent.com/felipeM0/big-boom/main/src/data/users.json`
         );
         return { email, res: response.json() };
       },
     }).then((result) => {
-      Promise.resolve(result.value?.res).then((v) => {
-        for (let i = 0; i < v.length; i++) {
-          if (v[i].email === result.value?.email) {
-            Swal.fire({
-              title: `Olá, ${v[i].name}!`,
-              icon: "success",
-              html: `Link de recuperação enviado para <strong>${result.value?.email}</strong>, verifique seu email (e não esqueça da caixa de SPAM)`,
-            });
-            return;
+      if (result.isConfirmed) {
+        Promise.resolve(result.value?.res).then((v) => {
+          for (let i = 0; i < v.length; i++) {
+            if (v[i].email === result.value?.email) {
+              msgSwal(
+                `Olá, ${v[i].name.split(" ").slice(0, -1).join(" ")}!`,
+                `Link de recuperação enviado para <strong>${result.value?.email}</strong>, verifique seu email </br> (e não esqueça da caixa de SPAM)`,
+                "success",
+                0
+              );
+              return;
+            }
           }
-        }
-      });
+        });
 
-      Swal.fire({
-        title: "Aviso",
-        icon: "error",
-        text: "Email não reconhecido, verifique essa informação",
-      });
+        msgSwal(
+          "Aviso",
+          "Email não reconhecido, verifique essa informação",
+          "error",
+          4000
+        );
+      }
     });
   };
 
@@ -146,7 +146,7 @@ const Login = () => {
     <div id="Login-content">
       <div className="bg-move-gradient" />
       <div>
-        <div className={`first-box ${next}`}>
+        <div id="f-box" className="first-box">
           <img src={LogoImg} alt="Logo" />
 
           <div className={`msg-top ${showPass ? "is-flipped" : ""}`}>
@@ -253,12 +253,7 @@ const Login = () => {
         <div className={`msg-footer ${showPass ? "is-flipped" : ""}`}>
           <div className="dv-msg-footer-inside">
             <span>Não tem uma conta?</span>
-            <button
-              onClick={() => {
-                setNext("next");
-                goToNext("new-account");
-              }}
-            >
+            <button onClick={() => goToNext("new-account")}>
               <span>Crie uma!</span>
             </button>
           </div>
