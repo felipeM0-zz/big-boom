@@ -1,0 +1,45 @@
+.side-box {
+  width: 15rem;
+  height: 100vh;
+  background: #383038;
+  transition: all 0.3s;
+  /* transform: translate(-170px, 0); */
+  transform: translate(0, 0);
+  /* padding: 0 1.3rem; */
+}
+
+/* .side-box:hover {
+  transform: translate(0, 0);
+} */
+
+.side-box .options-box a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.side-box .options-box a button {
+  padding: 1rem 0;
+  border-radius: 0;
+}
+
+.side-box .options-box a:hover button {
+  background: #221e2254;
+}
+
+.side-box .options-box a button .MuiButton-label {
+  color: var(--color-secundary);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.side-box .options-box a .marker {
+  width: 4px;
+  height: 100%;
+  background: var(--color-secundary);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  position: absolute;
+  right: 0;
+}

@@ -1,0 +1,8 @@
+#Reports-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.reports-content {
+  width: 100vw;
+}

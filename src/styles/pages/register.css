@@ -1,0 +1,8 @@
+#Register-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.register-content {
+  width: 100vw;
+}

@@ -1,0 +1,8 @@
+#Main-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-content {
+  width: 100vw;
+}

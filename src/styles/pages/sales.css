@@ -1,0 +1,8 @@
+#Sales-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.sales-content {
+  width: 100vw;
+}
