@@ -5,7 +5,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
 import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
-import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
+import AccountBalanceRoundedIcon from "@material-ui/icons/AccountBalanceRounded";
 import PictureAsPdfRoundedIcon from "@material-ui/icons/PictureAsPdfRounded";
 
 import "../styles/components/sidebar.css";
@@ -18,6 +18,7 @@ const Sidebar = () => {
       <div className="side-box">
         <div className="options-box">
           <Link to="/main">
+            <p>Dashboards</p>
             <Button fullWidth>
               <span>Dashboards</span>
               <DashboardRoundedIcon />
@@ -26,6 +27,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to="/register">
+            <p>Cadastros</p>
             <Button fullWidth>
               <span>Cadastros</span>
               <PostAddRoundedIcon />
@@ -34,6 +36,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to="/sales">
+            <p>Vendas</p>
             <Button fullWidth>
               <span>Vendas</span>
               <AttachMoneyRoundedIcon />
@@ -42,6 +45,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to="/financial">
+            <p>Financeiro</p>
             <Button fullWidth>
               <span>Financeiro</span>
               <AccountBalanceRoundedIcon />
@@ -50,6 +54,7 @@ const Sidebar = () => {
           </Link>
 
           <Link to="/reports">
+            <p>Relatórios</p>
             <Button fullWidth>
               <span>Relatórios</span>
               <PictureAsPdfRoundedIcon />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import {
   Avatar,
@@ -20,7 +20,7 @@ import InfoIcon from "@material-ui/icons/Info";
 
 import "../styles/components/header.css";
 import "cropperjs/dist/cropper.css";
-import "../styles/Demo.css";
+import "../styles/preview-cropper.css";
 
 const Header = (props: { title: String; user: String }) => {
   const [openProfile, setOpenProfile] = useState(false);
@@ -50,10 +50,6 @@ const Header = (props: { title: String; user: String }) => {
       setCropData(cropper.getCroppedCanvas().toDataURL());
     }
   };
-
-  useEffect(() => {
-    console.log(cropper);
-  }, [cropper]);
 
   return (
     <div id="Header-content">
@@ -109,47 +105,55 @@ const Header = (props: { title: String; user: String }) => {
                   <span>Editar image</span>
                 </label>
               </div>
-
-              {showCropper && (
-                <Dialog open={showCropper} onClose={() => setShowCropper(false)}>
-                  <DialogTitle>Ajuste sua imagem</DialogTitle>
-
-                  <DialogContent>
-                    <Cropper
-                      style={{ height: 400, width: "100%" }}
-                      initialAspectRatio={1}
-                      aspectRatio={1 / 1}
-                      // preview=".img-preview" // MOSTRAR PRÉVIA SE NECESSÁRIO
-                      src={image}
-                      viewMode={1}
-                      guides={true}
-                      minCropBoxHeight={10}
-                      minCropBoxWidth={10}
-                      background={false}
-                      responsive={true}
-                      autoCropArea={1}
-                      checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-                      onInitialized={(instance: any) => {
-                        setCropper(instance);
-                      }}
-                    />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={() => {
-                        getCropData();
-                        setShowCropper(false);
-                      }}
-                    >
-                      Pronto
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              )}
             </div>
           </DialogActions>
         </DialogContent>
       </Dialog>
+
+      {showCropper && (
+        <Dialog
+          open={showCropper}
+          className="profile-cropper"
+          onClose={() => setShowCropper(false)}
+        >
+          <div className="dialog-cropper-header">
+            <DialogTitle>Ajuste sua imagem</DialogTitle>
+            <CloseIcon onClick={() => setShowCropper(false)} />
+          </div>
+
+          <DialogContent>
+            <Cropper
+              style={{ height: 400, width: "100%" }}
+              initialAspectRatio={1}
+              aspectRatio={1 / 1}
+              // preview=".img-preview" // MOSTRAR PRÉVIA SE NECESSÁRIO
+              src={image}
+              viewMode={1}
+              guides={true}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
+              background={false}
+              responsive={true}
+              autoCropArea={1}
+              checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+              onInitialized={(instance: any) => {
+                setCropper(instance);
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              fullWidth
+              onClick={() => {
+                getCropData();
+                setShowCropper(false);
+              }}
+            >
+              Pronto!
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </div>
   );
 };

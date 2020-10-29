@@ -6,7 +6,7 @@
 }
 
 .side-box:hover {
-  width: 13rem;
+  width: 11rem;
 }
 
 .side-box .options-box a {
@@ -20,6 +20,7 @@
   padding: 1rem 0;
   border-radius: 0;
   min-width: auto;
+  transition: all 0.3s;
 }
 
 .side-box .options-box a:hover button {
@@ -49,7 +50,7 @@
 }
 
 .side-box .options-box a .marker {
-  width: 4px;
+  width: 0.21rem;
   height: 100%;
   background: var(--color-secundary);
   border-top-left-radius: 4px;
@@ -58,23 +59,40 @@
   right: 0;
 }
 
+.side-box .options-box a > p {
+  position: absolute;
+  bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.6rem;
+  color: #dad2d8;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.4s;
+}
+
 @media (max-width: 425px) {
-  .side-box {
-    width: 3rem;
-  }
+  .side-box,
   .side-box:hover {
-    width: 3rem;
+    width: 4rem;
   }
+  .side-box:hover .options-box a button .MuiButton-label svg,
   .side-box:not(hover) .options-box a button .MuiButton-label svg {
-    right: 0.8rem;
-  }
-  .side-box:hover .options-box a button .MuiButton-label svg {
-    right: 0.8rem;
+    right: 1.2rem;
   }
   .side-box .options-box a button .MuiButton-label {
     padding: 0.7rem 0;
   }
-  .side-box .options-box a button .MuiButton-label span {
+  .side-box .options-box a button .MuiButton-label > span:first-child {
     display: none;
+  }
+  .side-box .options-box a button {
+    padding: 0.7rem 0 1.4rem 0;
+  }
+  .side-box .options-box a > p {
+    opacity: 1;
+  }
+  .side-box .options-box a .marker {
+    width: 0.15rem;
   }
 }

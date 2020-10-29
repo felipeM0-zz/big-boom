@@ -21,6 +21,7 @@
   flex-direction: column;
   line-height: 20px;
   max-width: 15rem;
+  transition: all 0.3s;
 }
 
 .header-box .info-session span:nth-child(1) {
@@ -61,18 +62,22 @@
   font-size: 1.3rem;
 }
 
-.profile-dialog .MuiDialog-paper {
+.profile-dialog .MuiDialog-paper,
+.profile-cropper .MuiDialog-paper {
   background: #523c52;
+  transition: all 0.3s;
 }
 
-.profile-dialog .dialog-header {
+.profile-dialog .dialog-header,
+.profile-cropper .dialog-cropper-header {
   color: var(--color-secundary);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.profile-dialog .dialog-header svg {
+.profile-dialog .dialog-header svg,
+.profile-cropper .dialog-cropper-header svg {
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -80,11 +85,13 @@
 .profile-dialog .profile-content > .MuiTypography-root {
   color: #9c909c;
   line-height: 20px;
+  text-align: justify;
 }
 
 .profile-dialog .profile-content > .MuiTypography-root svg {
   margin-right: 0.2rem;
   padding-top: 0.1rem;
+  font-size: 1rem;
 }
 
 .profile-dialog .profile-content .MuiDialogActions-root .info-content {
@@ -135,4 +142,37 @@
   font-weight: 500;
   font-size: 0.8rem;
   cursor: pointer;
+}
+
+.profile-cropper .MuiDialog-paper .MuiDialogActions-root button {
+  background: var(--color-secundary);
+  margin: 1rem;
+}
+
+.profile-cropper .MuiDialog-paper .MuiDialogActions-root button span:first-child {
+  font-weight: 500;
+  text-transform: none;
+  color: var(--color-primary);
+}
+
+@media (max-width: 425px) {
+  #Header-content {
+    height: 3.9rem;
+  }
+  .header-box .info-session {
+    margin-right: 0.2rem;
+  }
+  .header-box .info-session span:nth-child(1) {
+    font-size: 1rem;
+  }
+  .header-box .info-session span:nth-child(2) {
+    font-size: 0.75rem;
+  }
+  .profile-dialog .MuiDialog-paper,
+  .profile-cropper .MuiDialog-paper {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    max-height: 100vh;
+  }
 }
