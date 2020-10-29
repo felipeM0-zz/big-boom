@@ -1,6 +1,13 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import { Link, useRouteMatch } from "react-router-dom";
+
+import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
+import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
+import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
+import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
+import PictureAsPdfRoundedIcon from "@material-ui/icons/PictureAsPdfRounded";
+
 import "../styles/components/sidebar.css";
 
 const Sidebar = () => {
@@ -11,27 +18,42 @@ const Sidebar = () => {
       <div className="side-box">
         <div className="options-box">
           <Link to="/main">
-            <Button fullWidth>Dashboards</Button>
+            <Button fullWidth>
+              <span>Dashboards</span>
+              <DashboardRoundedIcon />
+            </Button>
             {`${url === "/main" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/register">
-            <Button fullWidth>Cadastros</Button>
+            <Button fullWidth>
+              <span>Cadastros</span>
+              <PostAddRoundedIcon />
+            </Button>
             {`${url === "/register" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/sales">
-            <Button fullWidth>Vendas</Button>
+            <Button fullWidth>
+              <span>Vendas</span>
+              <AttachMoneyRoundedIcon />
+            </Button>
             {`${url === "/sales" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/financial">
-            <Button fullWidth>Financeiro</Button>
+            <Button fullWidth>
+              <span>Financeiro</span>
+              <AccountBalanceRoundedIcon />
+            </Button>
             {`${url === "/financial" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/reports">
-            <Button fullWidth>Relatórios</Button>
+            <Button fullWidth>
+              <span>Relatórios</span>
+              <PictureAsPdfRoundedIcon />
+            </Button>
             {`${url === "/reports" ? "active" : ""}` && <div className="marker" />}
           </Link>
         </div>
