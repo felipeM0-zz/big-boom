@@ -36,12 +36,103 @@
   color: #dad2d883;
 }
 
-.header-box .avatar {
+.header-box .container-avatar .avatar {
   background: #383038;
   width: 50px;
   height: 50px;
 }
 
-.header-box .avatar img {
+.header-box .container-avatar .avatar img {
   width: 100%;
+}
+
+.container-avatar {
+  position: relative;
+}
+
+.container-avatar svg {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  background: var(--color-secundary);
+  color: #221e22ce;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.profile-dialog .MuiDialog-paper {
+  background: #523c52;
+}
+
+.profile-dialog .dialog-header {
+  color: var(--color-secundary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-dialog .dialog-header svg {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.profile-dialog .profile-content > .MuiTypography-root {
+  color: #9c909c;
+  line-height: 20px;
+}
+
+.profile-dialog .profile-content > .MuiTypography-root svg {
+  margin-right: 0.2rem;
+  padding-top: 0.1rem;
+}
+
+.profile-dialog .profile-content .MuiDialogActions-root .info-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload img {
+  width: 10rem;
+  border-radius: 5rem;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload .dv-content {
+  height: 10rem;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload .dv-content > div {
+  display: none;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload label .hover-state {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  border-radius: 5rem;
+  transition: all 0.4s;
+  cursor: pointer;
+  top: 0;
+}
+
+.MuiDialogActions-root .info-content .avatar-upload label .hover-state:hover {
+  box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0.8);
+}
+
+.MuiDialogActions-root .info-content .avatar-upload label > span {
+  text-align: center;
+  color: var(--color-secundary);
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
 }
