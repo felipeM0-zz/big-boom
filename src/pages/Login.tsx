@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import * as EmailValidator from "email-validator";
-import { Button, Tooltip } from "@material-ui/core";
+import { Tooltip } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -185,14 +185,13 @@ const Login = () => {
                   <span>Insira um email válido</span>
                 </div>
 
-                <Button
+                <button
                   type="submit"
-                  variant="contained"
                   className="btn-principal"
                   disabled={!EmailValidator.validate(email)}
                 >
                   Continuar
-                </Button>
+                </button>
               </form>
               <form
                 id="pass-form"
@@ -232,14 +231,13 @@ const Login = () => {
                   )}
                 </div>
 
-                <Button
+                <button
                   type="submit"
-                  variant="contained"
                   className="btn-principal"
                   disabled={password.length <= 5}
                 >
                   Logar
-                </Button>
+                </button>
 
                 <button type="button" onClick={returnLink}>
                   Voltar

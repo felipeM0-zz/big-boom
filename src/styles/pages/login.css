@@ -204,13 +204,17 @@
 
 .dv-msg-middle-inside .btn-principal {
   width: 15rem;
+  height: 2.5rem;
+  border: none;
   border-radius: 7.5rem;
+  cursor: pointer;
+  outline: none;
   text-transform: none;
   font-weight: 800 !important;
   color: var(--color-primary);
 }
 
-.dv-msg-middle-inside .btn-principal.Mui-disabled {
+.dv-msg-middle-inside .btn-principal:disabled {
   background: var(--color-secundary-opaque);
   color: #ffffff59;
   font-weight: normal !important;
