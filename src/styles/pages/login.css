@@ -215,6 +215,7 @@
 }
 
 .dv-msg-middle-inside .btn-principal:disabled {
+  cursor: no-drop;
   background: var(--color-secundary-opaque);
   color: #ffffff59;
   font-weight: normal !important;

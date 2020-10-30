@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import {
   Avatar,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -93,6 +92,7 @@ const Header = (props: { title: String; user: String }) => {
                     <div>
                       <input
                         type="file"
+                        accept="image/*"
                         onChange={(e) => {
                           onChange(e);
                           setShowCropper(true);
@@ -123,7 +123,7 @@ const Header = (props: { title: String; user: String }) => {
 
           <DialogContent>
             <Cropper
-              style={{ height: 400, width: "100%" }}
+              className="cropper-box"
               initialAspectRatio={1}
               aspectRatio={1 / 1}
               // preview=".img-preview" // MOSTRAR PRÉVIA SE NECESSÁRIO
@@ -142,15 +142,14 @@ const Header = (props: { title: String; user: String }) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              fullWidth
+            <button
               onClick={() => {
                 getCropData();
                 setShowCropper(false);
               }}
             >
-              Pronto!
-            </Button>
+              <span>Pronto!</span>
+            </button>
           </DialogActions>
         </Dialog>
       )}

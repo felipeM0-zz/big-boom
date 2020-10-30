@@ -82,6 +82,15 @@
   cursor: pointer;
 }
 
+.profile-cropper .MuiDialogContent-root .cropper-box {
+  height: 70vh;
+  width: 100%;
+}
+
+.profile-cropper .MuiDialogContent-root .cropper-box .cropper-container {
+  margin: auto;
+}
+
 .profile-dialog .profile-content > .MuiTypography-root {
   color: #9c909c;
   line-height: 20px;
@@ -146,7 +155,17 @@
 
 .profile-cropper .MuiDialog-paper .MuiDialogActions-root button {
   background: var(--color-secundary);
-  margin: 1rem;
+  margin: 0.5rem 1rem;
+  width: 100%;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.profile-cropper .MuiDialog-paper .MuiDialogActions-root button span {
+  font-weight: 500;
+  color: var(--color-primary);
 }
 
 .profile-cropper .MuiDialog-paper .MuiDialogActions-root button span:first-child {
@@ -170,9 +189,9 @@
   }
   .profile-dialog .MuiDialog-paper,
   .profile-cropper .MuiDialog-paper {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin: auto;
-    max-height: 100vh;
+    max-height: 100%;
   }
 }
