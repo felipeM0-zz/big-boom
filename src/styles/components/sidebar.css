@@ -17,36 +17,38 @@
 }
 
 .side-box .options-box a button {
-  padding: 1rem 0;
-  border-radius: 0;
-  min-width: auto;
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 3.5rem;
+  cursor: pointer;
+  position: relative;
   transition: all 0.3s;
+  background: #383038;
+  color: var(--color-secundary);
 }
 
 .side-box .options-box a:hover button {
   background: #221e2254;
 }
 
-.side-box .options-box a button .MuiButton-label {
-  color: var(--color-secundary);
-  font-weight: 500;
-  text-transform: none;
-  position: relative;
-}
-
-.side-box .options-box a button .MuiButton-label span {
+.side-box .options-box a button span {
   transform: translate(-150px, 0px);
-  transition: all 0.31s;
-  padding-right: 2rem;
+  transition: all 0.3s;
+  position: absolute;
+  top: 1.05rem;
+  right: 1.5rem;
+  left: 0;
 }
 
-.side-box:hover .options-box a button .MuiButton-label span {
+.side-box:hover .options-box a button span {
   transform: translate(0px, 0px);
 }
 
-.side-box .options-box a button .MuiButton-label svg {
+.side-box .options-box a button svg {
   position: absolute;
-  right: 1.3rem;
+  top: 1rem;
+  right: 1.2rem;
 }
 
 .side-box .options-box a .marker {
@@ -76,23 +78,16 @@
   .side-box:hover {
     width: 4rem;
   }
-  .side-box:hover .options-box a button .MuiButton-label svg,
-  .side-box:not(hover) .options-box a button .MuiButton-label svg {
-    right: 1.2rem;
-  }
-  .side-box .options-box a button .MuiButton-label {
-    padding: 0.7rem 0;
-  }
-  .side-box .options-box a button .MuiButton-label > span:first-child {
+  .side-box .options-box a button > span:first-child {
     display: none;
-  }
-  .side-box .options-box a button {
-    padding: 0.7rem 0 1.4rem 0;
   }
   .side-box .options-box a > p {
     opacity: 1;
   }
   .side-box .options-box a .marker {
     width: 0.15rem;
+  }
+  .side-box .options-box a button svg {
+    top: 0.6rem;
   }
 }

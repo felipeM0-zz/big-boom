@@ -19,46 +19,46 @@ const Sidebar = () => {
         <div className="options-box">
           <Link to="/main">
             <p>Dashboards</p>
-            <Button fullWidth>
+            <button>
               <span>Dashboards</span>
               <DashboardRoundedIcon />
-            </Button>
+            </button>
             {`${url === "/main" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/register">
             <p>Cadastros</p>
-            <Button fullWidth>
+            <button>
               <span>Cadastros</span>
               <PostAddRoundedIcon />
-            </Button>
+            </button>
             {`${url === "/register" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/sales">
             <p>Vendas</p>
-            <Button fullWidth>
+            <button>
               <span>Vendas</span>
               <AttachMoneyRoundedIcon />
-            </Button>
+            </button>
             {`${url === "/sales" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/financial">
             <p>Financeiro</p>
-            <Button fullWidth>
+            <button>
               <span>Financeiro</span>
               <AccountBalanceRoundedIcon />
-            </Button>
+            </button>
             {`${url === "/financial" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/reports">
             <p>Relatórios</p>
-            <Button fullWidth>
+            <button>
               <span>Relatórios</span>
               <PictureAsPdfRoundedIcon />
-            </Button>
+            </button>
             {`${url === "/reports" ? "active" : ""}` && <div className="marker" />}
           </Link>
         </div>

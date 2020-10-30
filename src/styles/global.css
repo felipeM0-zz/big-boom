@@ -2,7 +2,6 @@
   --color-primary: #221e22;
   --color-secundary: #dad2d8;
   --color-secundary-opaque: #dad2d842;
-
 }
 
 * {
@@ -15,6 +14,8 @@
 body {
   color: var(--color-secundary);
   background-color: var(--color-primary);
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 body,
