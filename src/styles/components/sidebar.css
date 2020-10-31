@@ -72,22 +72,3 @@
   opacity: 0;
   transition: all 0.4s;
 }
-
-@media (max-width: 425px) {
-  .side-box,
-  .side-box:hover {
-    width: 4rem;
-  }
-  .side-box .options-box a button > span:first-child {
-    display: none;
-  }
-  .side-box .options-box a > p {
-    opacity: 1;
-  }
-  .side-box .options-box a .marker {
-    width: 0.15rem;
-  }
-  .side-box .options-box a button svg {
-    top: 0.6rem;
-  }
-}
