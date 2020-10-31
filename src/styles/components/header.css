@@ -19,14 +19,14 @@
   align-items: flex-end;
   margin-right: 0.9rem;
   flex-direction: column;
-  line-height: 20px;
+  line-height: 23px;
   max-width: 15rem;
   transition: all 0.3s;
 }
 
 .header-box .info-session span:nth-child(1) {
-  font-weight: 800;
-  font-size: 1.4rem;
+  font-weight: 700;
+  font-size: 1.3rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -80,6 +80,10 @@
 .profile-cropper .dialog-cropper-header svg {
   margin-right: 1rem;
   cursor: pointer;
+}
+
+.profile-cropper .MuiDialogContent-root {
+  overflow: hidden;
 }
 
 .profile-cropper .MuiDialogContent-root .cropper-box {
