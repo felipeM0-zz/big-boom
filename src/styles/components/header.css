@@ -4,7 +4,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem;
+  min-width: 320px;
 }
 
 .header-box {
@@ -178,7 +179,7 @@
   color: var(--color-primary);
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   #Header-content {
     height: 3.9rem;
   }

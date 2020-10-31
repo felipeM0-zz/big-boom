@@ -16,6 +16,8 @@ body {
   background-color: var(--color-primary);
 
   -webkit-tap-highlight-color: transparent;
+
+  min-width: 320px;
 }
 
 p,
