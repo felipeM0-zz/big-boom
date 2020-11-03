@@ -18,47 +18,42 @@ const Sidebar = () => {
         <div className="options-box">
           <Link to="/main">
             <p>Dashboards</p>
-            <button>
+            <button className={`${url === "/main" ? "active" : ""}`}>
               <span>Dashboards</span>
               <DashboardRoundedIcon />
             </button>
-            {`${url === "/main" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/register">
             <p>Cadastros</p>
-            <button>
+            <button className={`${url === "/register" ? "active" : ""}`}>
               <span>Cadastros</span>
               <PostAddRoundedIcon />
             </button>
-            {`${url === "/register" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/sales">
             <p>Vendas</p>
-            <button>
+            <button className={`${url === "/sales" ? "active" : ""}`}>
               <span>Vendas</span>
               <AttachMoneyRoundedIcon />
             </button>
-            {`${url === "/sales" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/financial">
             <p>Financeiro</p>
-            <button>
+            <button className={`${url === "/financial" ? "active" : ""}`}>
               <span>Financeiro</span>
               <AccountBalanceRoundedIcon />
             </button>
-            {`${url === "/financial" ? "active" : ""}` && <div className="marker" />}
           </Link>
 
           <Link to="/reports">
             <p>Relatórios</p>
-            <button>
+            <button className={`${url === "/reports" ? "active" : ""}`}>
               <span>Relatórios</span>
               <PictureAsPdfRoundedIcon />
             </button>
-            {`${url === "/reports" ? "active" : ""}` && <div className="marker" />}
           </Link>
         </div>
       </div>

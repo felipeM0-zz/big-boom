@@ -29,6 +29,16 @@
   color: var(--color-secundary);
 }
 
+.side-box .options-box a button.active {
+  border-right: 2px solid var(--color-secundary);
+  padding-left: 2px;
+}
+
+.side-box .options-box a:last-child button.active {
+  border-bottom: 2px solid var(--color-secundary);
+  padding-top: 2px;
+}
+
 .side-box .options-box a:last-child button {
   border-bottom-right-radius: 2rem;
 }
@@ -41,7 +51,7 @@
   transform: translate(-150px, 0px);
   transition: all 0.3s;
   position: absolute;
-  top: 1.05rem;
+  top: 1.2rem;
   right: 1.5rem;
   left: 0;
 }
@@ -54,16 +64,6 @@
   position: absolute;
   top: 1rem;
   right: 1.2rem;
-}
-
-.side-box .options-box a .marker {
-  width: 0.21rem;
-  height: 100%;
-  background: var(--color-secundary);
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  position: absolute;
-  right: 0;
 }
 
 .side-box .options-box a > p {
