@@ -3,11 +3,11 @@ import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import TabMobile from "../components/TabMobile";
 
-import "../styles/pages/main.css";
+import { Container } from "../styles/pages/main";
 
 const Main = () => {
   return (
-    <div id="Main-content">
+    <Container>
       <Sidebar />
       <div className="main-content">
         <Header
@@ -19,7 +19,7 @@ const Main = () => {
         </div>
         <TabMobile />
       </div>
-    </div>
+    </Container>
   );
 };
 

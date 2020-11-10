@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import {
   Avatar,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -17,9 +16,9 @@ import ImgLogo from "../images/logo.png";
 import CloseIcon from "@material-ui/icons/Close";
 import InfoIcon from "@material-ui/icons/Info";
 
-import "../styles/components/header.css";
-import "cropperjs/dist/cropper.css";
-import "../styles/preview-cropper.css";
+import Container from "../styles/components/Header/header";
+import DialogHeader from "../styles/components/Header/dialogHeader";
+import DialogCropper from "../styles/components/Header/dialogCropper";
 
 const Header = (props: { title: String; user: String }) => {
   const [openProfile, setOpenProfile] = useState(false);
@@ -51,7 +50,7 @@ const Header = (props: { title: String; user: String }) => {
   };
 
   return (
-    <div id="Header-content">
+    <Container id="Header-content">
       <div className="header-box">
         <div className="info-session">
           <span>{props.title.split(" ").slice(0, 2).join(" ")}</span>
@@ -67,15 +66,16 @@ const Header = (props: { title: String; user: String }) => {
         </div>
       </div>
 
-      <Dialog
+      <DialogHeader
         className="profile-dialog"
         open={openProfile}
         onClose={() => setOpenProfile(false)}
       >
-        <div className="dialog-header">
-          <DialogTitle id="simple-dialog-title">Preferências</DialogTitle>
+        <DialogTitle>
+          <span>Preferências</span>
           <CloseIcon onClick={() => setOpenProfile(false)} />
-        </div>
+        </DialogTitle>
+
         <DialogContent className="profile-content">
           <DialogContentText>
             <InfoIcon />
@@ -86,7 +86,7 @@ const Header = (props: { title: String; user: String }) => {
             <div className="info-content">
               <div className="avatar-upload">
                 <label htmlFor="upload">
-                  <div className="hover-state"></div>
+                  <div className="hover-state" />
                   <div className="dv-content">
                     <img src={cropData !== "" ? cropData : ImgLogo} alt="Logo" />
                     <div>
@@ -108,18 +108,18 @@ const Header = (props: { title: String; user: String }) => {
             </div>
           </DialogActions>
         </DialogContent>
-      </Dialog>
+      </DialogHeader>
 
       {showCropper && (
-        <Dialog
+        <DialogCropper
           open={showCropper}
           className="profile-cropper"
           onClose={() => setShowCropper(false)}
         >
-          <div className="dialog-cropper-header">
-            <DialogTitle>Ajuste sua imagem</DialogTitle>
+          <DialogTitle>
+            <span>Ajuste sua imagem</span>
             <CloseIcon onClick={() => setShowCropper(false)} />
-          </div>
+          </DialogTitle>
 
           <DialogContent>
             <Cropper
@@ -151,9 +151,9 @@ const Header = (props: { title: String; user: String }) => {
               <span>Pronto!</span>
             </button>
           </DialogActions>
-        </Dialog>
+        </DialogCropper>
       )}
-    </div>
+    </Container>
   );
 };
 

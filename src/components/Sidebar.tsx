@@ -7,13 +7,13 @@ import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import AccountBalanceRoundedIcon from "@material-ui/icons/AccountBalanceRounded";
 import PictureAsPdfRoundedIcon from "@material-ui/icons/PictureAsPdfRounded";
 
-import "../styles/components/sidebar.css";
+import SideBarStyles from "../styles/components/Sidebar/sidebar";
 
 const Sidebar = () => {
   const url = useRouteMatch().url;
 
   return (
-    <div id="Sidebar-content">
+    <SideBarStyles id="Sidebar-content">
       <div className="side-box">
         <div className="options-box">
           <Link to="/main">
@@ -57,7 +57,7 @@ const Sidebar = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </SideBarStyles>
   );
 };
 
