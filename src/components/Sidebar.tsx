@@ -1,60 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-
-import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
-import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
-import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
-import AccountBalanceRoundedIcon from "@material-ui/icons/AccountBalanceRounded";
-import PictureAsPdfRoundedIcon from "@material-ui/icons/PictureAsPdfRounded";
-
+// CONTEXTS
+import CompContext from "../contexts/CompContext";
+// STYLES
 import SideBarStyles from "../styles/components/Sidebar/sidebar";
 
 const Sidebar = () => {
+  const CompCont = useContext(CompContext);
   const url = useRouteMatch().url;
 
   return (
     <SideBarStyles id="Sidebar-content">
       <div className="side-box">
         <div className="options-box">
-          <Link to="/main">
-            <p>Dashboards</p>
-            <button className={`${url === "/main" ? "active" : ""}`}>
-              <span>Dashboards</span>
-              <DashboardRoundedIcon />
-            </button>
-          </Link>
-
-          <Link to="/register">
-            <p>Cadastros</p>
-            <button className={`${url === "/register" ? "active" : ""}`}>
-              <span>Cadastros</span>
-              <PostAddRoundedIcon />
-            </button>
-          </Link>
-
-          <Link to="/sales">
-            <p>Vendas</p>
-            <button className={`${url === "/sales" ? "active" : ""}`}>
-              <span>Vendas</span>
-              <AttachMoneyRoundedIcon />
-            </button>
-          </Link>
-
-          <Link to="/financial">
-            <p>Financeiro</p>
-            <button className={`${url === "/financial" ? "active" : ""}`}>
-              <span>Financeiro</span>
-              <AccountBalanceRoundedIcon />
-            </button>
-          </Link>
-
-          <Link to="/reports">
-            <p>Relatórios</p>
-            <button className={`${url === "/reports" ? "active" : ""}`}>
-              <span>Relatórios</span>
-              <PictureAsPdfRoundedIcon />
-            </button>
-          </Link>
+          {CompCont.comp.options.map((v, index) => {
+            return (
+              <Link to={`${v.route}`} key={index}>
+                <p>{v.name}</p>
+                <button className={`${url === v.route ? "active" : ""}`}>
+                  <span>{v.name}</span>
+                  {v.icon}
+                </button>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </SideBarStyles>

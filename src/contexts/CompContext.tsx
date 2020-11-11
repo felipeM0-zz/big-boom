@@ -13,7 +13,7 @@ interface PropsSetState {
 }
 
 const DefaultValue = {
-  state: {
+  comp: {
     tabmobile: ["Dashboards", "Cadastros", "Financeiro"],
     options: [
       { name: "Dashboards", route: "/main", icon: <DashboardRoundedIcon /> },
@@ -27,7 +27,7 @@ const DefaultValue = {
       { name: "Relatório", route: "/reports", icon: <PictureAsPdfRoundedIcon /> },
     ],
   },
-  setState: (state: PropsSetState) => {},
+  setComp: (state: PropsSetState) => {},
 };
 
 const CompContext = React.createContext(DefaultValue);

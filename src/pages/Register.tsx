@@ -7,15 +7,11 @@ import TabMobile from "../components/TabMobile";
 import "../styles/pages/register.css";
 
 const Register = () => {
-
   return (
     <div id="Register-content">
       <Sidebar />
       <div className="register-content">
-        <Header
-          title="BigBoom Company BigBoom Company BigBoom Company"
-          user="Felipe Moreira"
-        />
+        <Header />
         <div className="register-general">
           <h1>Conteudo</h1>
           <h1>Conteudo</h1>

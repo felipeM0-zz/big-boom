@@ -10,10 +10,7 @@ const Main = () => {
     <Container>
       <Sidebar />
       <div className="main-content">
-        <Header
-          title="BigBoom Company BigBoom Company BigBoom Company"
-          user="Felipe Moreira"
-        />
+        <Header />
         <div className="main-general">
           <h1>Conteudo</h1>
         </div>
