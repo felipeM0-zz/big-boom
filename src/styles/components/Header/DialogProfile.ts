@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Dialog } from "@material-ui/core";
 
-const DialogHeader = styled(Dialog)`
+const DialogProfile = styled(Dialog)`
   .MuiPaper-root {
     background: #523c52;
     transition: all 0.3s;
@@ -110,4 +110,4 @@ const DialogHeader = styled(Dialog)`
   }
 `;
 
-export default DialogHeader;
+export default DialogProfile;
