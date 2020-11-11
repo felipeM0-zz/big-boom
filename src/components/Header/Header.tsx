@@ -9,7 +9,7 @@ import ProfileDialog from "./Dialogs/ProfileDialog";
 // ICONS
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 // STYLES
-import Container from "../../styles/components/Header/header";
+import Container from "../../styles/components/Header/Header";
 
 const Header = () => {
   const ProfCont = useContext(ProfileContext);

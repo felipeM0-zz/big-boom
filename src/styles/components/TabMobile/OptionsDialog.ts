@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Dialog } from "@material-ui/core";
 
-const DialogOptions = styled(Dialog)`
+const OptionsDialog = styled(Dialog)`
   .MuiPaper-root {
     background: #523c52;
     transition: all 0.3s;
@@ -166,4 +166,4 @@ const DialogOptions = styled(Dialog)`
   }
 `;
 
-export default DialogOptions;
+export default OptionsDialog;

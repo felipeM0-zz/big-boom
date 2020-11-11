@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header/Header";
-import TabMobile from "../components/TabMobile";
+import TabMobile from "../components/TabMobile/TabMobile";
 
 import { Container } from "../styles/pages/main";
 

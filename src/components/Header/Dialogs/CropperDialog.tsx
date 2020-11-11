@@ -8,7 +8,7 @@ import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 // ICONS
 import CloseIcon from "@material-ui/icons/Close";
 // STYLES
-import DialogCropper from "../../../styles/components/Header/dialogCropper";
+import DialogCropper from "../../../styles/components/Header/DialogCropper";
 
 const CropperDialog = (props: { image: string | undefined }) => {
   const ProfCont = useContext(ProfileContext);

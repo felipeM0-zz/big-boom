@@ -3,7 +3,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 // CONTEXTS
 import CompContext from "../contexts/CompContext";
 // STYLES
-import SideBarStyles from "../styles/components/Sidebar/sidebar";
+import SideBarStyles from "../styles/components/Sidebar/Sidebar";
 
 const Sidebar = () => {
   const CompCont = useContext(CompContext);
