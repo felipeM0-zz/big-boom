@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 // CONTEXTS
 import CompContext from "../../../contexts/CompContext";
 import DialogsContext from "../../../contexts/DialogsContext";
@@ -8,10 +8,12 @@ import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 import msgSwal from "../../../utils/Swal";
 // ICONS
 import CloseIcon from "@material-ui/icons/Close";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 // STYLES
 import OptionsDialog from "../../../styles/components/TabMobile/OptionsDialog";
 
-const DialogOptions = (props: any) => {
+const DialogOptions = () => {
+  const url = useRouteMatch().url;
   const CompCont = useContext(CompContext);
   const DialogCont = useContext(DialogsContext);
 
@@ -58,14 +60,20 @@ const DialogOptions = (props: any) => {
     return cont;
   };
 
+  const verifySelected = (v: string) => {
+    for (let i = 0; i < CompCont.comp.tabmobile.length; i++) {
+      if (v === CompCont.comp.tabmobile[i]) {
+        return { status: "active", bool: true };
+      }
+    }
+  };
+
   return (
     <OptionsDialog
       open={DialogCont.dialogs.optionstab}
       className="dialog-plus"
       onRendered={() => setNumSelected(verifyOptions())}
-      onClose={() =>
-        DialogCont.setDialogs({ ...DialogCont.dialogs, optionstab: false })
-      }
+      onClose={() => DialogCont.setDialogs({ ...DialogCont.dialogs, optionstab: false })}
     >
       <div className="box-content">
         <DialogTitle>
@@ -80,7 +88,7 @@ const DialogOptions = (props: any) => {
         <DialogContent>
           <div className="not-visibles">
             {CompCont.comp.options.map((v, index) => {
-              if (!props.verifySelected(v.name)?.bool) {
+              if (!verifySelected(v.name)?.bool) {
                 return (
                   <Link
                     key={index}
@@ -94,6 +102,7 @@ const DialogOptions = (props: any) => {
                   >
                     <button>
                       <span>{v.name}</span>
+                      {url === v.route && <FiberManualRecordIcon />}
                     </button>
                   </Link>
                 );
@@ -110,7 +119,7 @@ const DialogOptions = (props: any) => {
                 return (
                   <div
                     key={index}
-                    className={`${props.verifySelected(v.name)?.status}`}
+                    className={`${verifySelected(v.name)?.status}`}
                     onClick={(e) => handleOptionsTab(e.currentTarget)}
                   >
                     <span>{v.name}</span>

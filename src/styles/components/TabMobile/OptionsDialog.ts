@@ -69,9 +69,15 @@ const OptionsDialog = styled(Dialog)`
               border: 1px solid var(--color-secundary);
               border-radius: 0.3rem;
               transition: all 0.5s;
+              position: relative;
 
               span {
                 font-size: 1rem;
+              }
+
+              svg {
+                position: absolute;
+                right: 10px;
               }
 
               :hover {

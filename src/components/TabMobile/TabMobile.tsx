@@ -53,7 +53,7 @@ const TabMobile = () => {
         </div>
       </TabMobileStyle>
 
-      <DialogOptions verifySelected={(v: string) => verifySelected(v)} />
+      <DialogOptions />
     </React.Fragment>
   );
 };
