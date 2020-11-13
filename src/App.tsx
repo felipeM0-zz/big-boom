@@ -19,13 +19,8 @@ function App() {
   });
 
   const [prof, setProf] = useState({
-    company: ProfCont.prof.company,
-    user: ProfCont.prof.user,
-    tel: ProfCont.prof.tel,
-    cel: ProfCont.prof.cel,
-    cpfcnpj: ProfCont.prof.cpfcnpj,
-    email: ProfCont.prof.email,
-    image: ProfCont.prof.image,
+    prof: ProfCont.prof.prof,
+    backup: ProfCont.prof.backup,
   });
 
   const [dialogs, setDialogs] = useState({

@@ -19,12 +19,12 @@ const Header = () => {
     <Container id="Header-content">
       <div className="header-box">
         <div className="info-session">
-          <span>{ProfCont.prof.company.split(" ").slice(0, 2).join(" ")}</span>
-          <span>{ProfCont.prof.user.split(" ").slice(0, 2).join(" ")}</span>
+          <span>{ProfCont.prof.backup.company.split(" ").slice(0, 2).join(" ")}</span>
+          <span>{ProfCont.prof.backup.user.split(" ").slice(0, 2).join(" ")}</span>
         </div>
         <div className="container-avatar">
           <Avatar className="avatar">
-            <img src={ProfCont.prof.image} alt="Logo" />
+            <img src={ProfCont.prof.backup.image} alt="Logo" />
           </Avatar>
           <Tooltip placement="left-start" title="Perfil">
             <AccountCircleRoundedIcon

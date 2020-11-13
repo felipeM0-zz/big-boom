@@ -8,7 +8,7 @@ import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 // ICONS
 import CloseIcon from "@material-ui/icons/Close";
 // STYLES
-import DialogCropper from "../../../styles/components/Header/DialogCropper";
+import DialogCropper from "../../../styles/components/Header/Dialogs/DialogCropper";
 
 const CropperDialog = (props: { image: string | undefined }) => {
   const ProfCont = useContext(ProfileContext);
@@ -19,8 +19,8 @@ const CropperDialog = (props: { image: string | undefined }) => {
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
       ProfCont.setProf({
-        ...ProfCont.prof,
-        image: cropper.getCroppedCanvas().toDataURL(),
+        prof: { ...ProfCont.prof.prof, image: cropper.getCroppedCanvas().toDataURL() },
+        backup: { ...ProfCont.prof.backup },
       });
     }
   };
@@ -29,9 +29,7 @@ const CropperDialog = (props: { image: string | undefined }) => {
     <DialogCropper
       open={DialogsCont.dialogs.cropper}
       className="profile-cropper"
-      onClose={() =>
-        DialogsCont.setDialogs({ ...DialogsCont.dialogs, cropper: false })
-      }
+      onClose={() => DialogsCont.setDialogs({ ...DialogsCont.dialogs, cropper: false })}
     >
       <DialogTitle>
         <span>Ajuste sua imagem</span>
