@@ -8,6 +8,8 @@ const DialogProfile = styled(Dialog)`
 
     .MuiDialogTitle-root {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 8px 24px;
+      
       .MuiTypography-root {
         color: var(--color-secundary);
         display: flex;

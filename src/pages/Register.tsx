@@ -1,8 +1,8 @@
 import React from "react";
 
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header/Header";
-import TabMobile from "../components/TabMobile/TabMobile";
+import Sidebar from "../components/SidebarComp/Sidebar";
+import Header from "../components/HeaderComp/Header";
+import TabMobile from "../components/TabMobileComp/TabMobile";
 
 import "../styles/pages/register.css";
 

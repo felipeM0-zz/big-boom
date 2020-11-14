@@ -8,7 +8,7 @@ import DialogOptions from "./Dialogs/DialogOptions";
 // ICONS
 import AddCircleRoundedIcon from "@material-ui/icons/AddCircleRounded";
 // STYLES
-import TabMobileStyle from "../../styles/components/TabMobile/TabMobile";
+import TabMobileStyle from "../../styles/components/TabMobileStyle/TabMobile";
 
 const TabMobile = () => {
   const url = useRouteMatch().url;

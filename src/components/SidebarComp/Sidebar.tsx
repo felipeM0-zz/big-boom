@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 // CONTEXTS
-import CompContext from "../contexts/CompContext";
+import CompContext from "../../contexts/CompContext";
 // STYLES
-import SideBarStyles from "../styles/components/Sidebar/Sidebar";
+import SideBarStyles from "../../styles/components/SidebarStyle/Sidebar";
 
 const Sidebar = () => {
   const CompCont = useContext(CompContext);

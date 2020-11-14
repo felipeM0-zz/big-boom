@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import validator from "validator";
 import { cpf, cnpj } from "cpf-cnpj-validator";
 import InputMask from "react-input-mask";
 // CONTEXTS
@@ -13,6 +12,7 @@ import {
   DialogTitle,
   Tooltip,
 } from "@material-ui/core";
+import { verifyError, verifyEditionInput } from "../../../utils/utilsProfile";
 // COMPONENTS
 import CropperDialog from "./CropperDialog";
 // ICONS
@@ -26,7 +26,7 @@ import PhoneAndroidIcon from "@material-ui/icons/PhoneAndroid";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
 // STYLES
-import DialogProfile from "../../../styles/components/Header/Dialogs/DialogProfile";
+import DialogProfile from "../../../styles/components/HeaderStyle/Dialogs/DialogProfile";
 
 const ProfileDialog = () => {
   const ProfCont = useContext(ProfileContext);
@@ -37,6 +37,7 @@ const ProfileDialog = () => {
 
   const [image, setImage] = useState<string>("");
 
+  // AO ESCOLHER OUTRA IMAGEM NO INPUT
   const onChange = (e: any) => {
     e.preventDefault();
     let files;
@@ -49,18 +50,12 @@ const ProfileDialog = () => {
     reader.readAsDataURL(files[0]);
   };
 
-  const verifyEditionInput = (current: string, original: string) => {
-    return current !== original ? "edited" : "";
-  };
-
-  const soShort = (v: string) => {
-    return v.trim().indexOf(" ") <= 0 ? "Inferior a 2 nomes" : null;
-  };
-
+  // REMOVE TODOS OS CARACATERES ESPECIAIS E MANTÉM APENAS NÚMEROS
   const removeSpecials = (v: string) => {
     return v.replace(/[^0-9]+/g, "");
   };
 
+  // REINICIA O VALOR DO INPUT PARA O ÚLTIMO EM BACKUP NO CONTEXT
   const restartValue = (v: string, e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     let elem = e?.target as HTMLAreaElement;
     let backup_k: string[] = Object.keys(Backup);
@@ -134,15 +129,15 @@ const ProfileDialog = () => {
               </label>
             </div>
 
-            <div className="inputs">
+            <div className="inputs" id="dv-inputs">
               <div>
                 <LocationCityIcon />
                 <div>
                   <input
-                    value={Prof.company}
                     type="text"
-                    className={`${verifyEditionInput(Prof.company, Backup.company)}`}
+                    value={Prof.company}
                     placeholder="Nome da empresa"
+                    className={`${verifyEditionInput(Prof.company, Backup.company)[0]}`}
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, company: e.target.value },
@@ -150,10 +145,10 @@ const ProfileDialog = () => {
                       })
                     }
                   />
-                  {verifyEditionInput(Prof.company, Backup.company) === "edited" && (
+                  {verifyEditionInput(Prof.company, Backup.company)[1] && (
                     <React.Fragment>
-                      <p>
-                        {validator.isEmpty(Prof.company) ? "Nulo" : soShort(Prof.company)}
+                      <p className={`${verifyError(Prof.company, "short")[0]}`}>
+                        {verifyError(Prof.company, "short")[1]}
                       </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon
@@ -170,10 +165,10 @@ const ProfileDialog = () => {
                 <PersonIcon />
                 <div>
                   <input
-                    value={Prof.user}
                     type="text"
-                    className={`${verifyEditionInput(Prof.user, Backup.user)}`}
+                    value={Prof.user}
                     placeholder="Usuário"
+                    className={`${verifyEditionInput(Prof.user, Backup.user)[0]}`}
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, user: e.target.value },
@@ -181,9 +176,11 @@ const ProfileDialog = () => {
                       })
                     }
                   />
-                  {verifyEditionInput(Prof.user, Backup.user) === "edited" && (
+                  {verifyEditionInput(Prof.user, Backup.user)[1] && (
                     <React.Fragment>
-                      <p>{validator.isEmpty(Prof.user) ? "Nulo" : soShort(Prof.user)}</p>
+                      <p className={`${verifyError(Prof.user, "short")[0]}`}>
+                        {verifyError(Prof.user, "short")[1]}
+                      </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon
                           className="active"
@@ -199,25 +196,24 @@ const ProfileDialog = () => {
                 <PhoneIcon />
                 <div>
                   <InputMask
-                    value={Prof.tel}
-                    type="text"
-                    mask="9999-9999"
+                    type="tel"
                     maskChar={null}
+                    mask="9999-9999"
+                    value={Prof.tel}
+                    inputMode="numeric"
                     placeholder="Telefone (opcional)"
+                    className={`${verifyEditionInput(Prof.tel, Backup.tel)[0]}`}
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, tel: removeSpecials(e.target.value) },
                         backup: { ...Backup },
                       })
                     }
-                    className={`${verifyEditionInput(Prof.tel, Backup.tel)}`}
                   />
-                  {verifyEditionInput(Prof.tel, Backup.tel) === "edited" && (
+                  {verifyEditionInput(Prof.tel, Backup.tel)[1] && (
                     <React.Fragment>
-                      <p>
-                        {validator.isEmpty(Prof.tel)
-                          ? "Nulo"
-                          : Prof.tel.length < 8 && "Formato inválido"}
+                      <p className={`${verifyError(Prof.tel, "inf8")[0]}`}>
+                        {verifyError(Prof.tel, "inf8")[1]}
                       </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon
@@ -234,12 +230,13 @@ const ProfileDialog = () => {
                 <PhoneAndroidIcon />
                 <div>
                   <InputMask
-                    mask="(99) 99999-9999"
+                    type="tel"
                     maskChar={null}
                     value={Prof.cel}
-                    type="text"
-                    className={`${verifyEditionInput(Prof.cel, Backup.cel)}`}
+                    inputMode="numeric"
                     placeholder="Celular"
+                    mask="(99) 99999-9999"
+                    className={`${verifyEditionInput(Prof.cel, Backup.cel)[0]}`}
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, cel: removeSpecials(e.target.value) },
@@ -247,12 +244,10 @@ const ProfileDialog = () => {
                       })
                     }
                   />
-                  {verifyEditionInput(Prof.cel, Backup.cel) === "edited" && (
+                  {verifyEditionInput(Prof.cel, Backup.cel)[1] && (
                     <React.Fragment>
-                      <p>
-                        {validator.isEmpty(Prof.cel)
-                          ? "Nulo"
-                          : Prof.cel.length < 11 && "Formato inválido"}
+                      <p className={`${verifyError(Prof.cel, "inf11")[0]}`}>
+                        {verifyError(Prof.cel, "inf11")[1]}
                       </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon
@@ -269,15 +264,16 @@ const ProfileDialog = () => {
                 <PermContactCalendarIcon />
                 <div>
                   <input
+                    type="tel"
+                    maxLength={18}
+                    inputMode="numeric"
+                    placeholder="CPF/CNPJ"
+                    className={`${verifyEditionInput(Prof.cpfcnpj, Backup.cpfcnpj)[0]}`}
                     value={
                       Prof.cpfcnpj.length <= 11
                         ? cpf.format(Prof.cpfcnpj)
                         : cnpj.format(Prof.cpfcnpj)
                     }
-                    maxLength={18}
-                    type="text"
-                    className={`${verifyEditionInput(Prof.cpfcnpj, Backup.cpfcnpj)}`}
-                    placeholder="CPF/CNPJ"
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, cpfcnpj: removeSpecials(e.target.value) },
@@ -285,14 +281,10 @@ const ProfileDialog = () => {
                       })
                     }
                   />
-                  {verifyEditionInput(Prof.cpfcnpj, Backup.cpfcnpj) === "edited" && (
+                  {verifyEditionInput(Prof.cpfcnpj, Backup.cpfcnpj)[1] && (
                     <React.Fragment>
-                      <p>
-                        {validator.isEmpty(Prof.cpfcnpj)
-                          ? "Nulo"
-                          : Prof.cpfcnpj.length <= 11
-                          ? !cpf.isValid(Prof.cpfcnpj) && "CPF inválido"
-                          : !cnpj.isValid(Prof.cpfcnpj) && "CPNJ inválido"}
+                      <p className={`${verifyError(Prof.cpfcnpj, "inf11+")[0]}`}>
+                        {verifyError(Prof.cpfcnpj, "inf11+")[1]}
                       </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon
@@ -309,10 +301,11 @@ const ProfileDialog = () => {
                 <AlternateEmailIcon />
                 <div>
                   <input
+                    type="email"
+                    inputMode="email"
                     value={Prof.email}
-                    type="text"
-                    className={`${verifyEditionInput(Prof.email, Backup.email)}`}
                     placeholder="Email"
+                    className={`${verifyEditionInput(Prof.email, Backup.email)[0]}`}
                     onChange={(e) =>
                       ProfCont.setProf({
                         prof: { ...Prof, email: e.target.value },
@@ -320,12 +313,10 @@ const ProfileDialog = () => {
                       })
                     }
                   />
-                  {verifyEditionInput(Prof.email, Backup.email) === "edited" && (
+                  {verifyEditionInput(Prof.email, Backup.email)[1] && (
                     <React.Fragment>
-                      <p>
-                        {validator.isEmpty(Prof.email)
-                          ? "Nulo"
-                          : !validator.isEmail(Prof.email) && "Email inválido"}
+                      <p className={`${verifyError(Prof.email, "email")[0]}`}>
+                        {verifyError(Prof.email, "email")[1]}
                       </p>
                       <Tooltip title="Reverter alterações" placement="left">
                         <CancelIcon

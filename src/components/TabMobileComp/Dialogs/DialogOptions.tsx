@@ -10,7 +10,7 @@ import msgSwal from "../../../utils/Swal";
 import CloseIcon from "@material-ui/icons/Close";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 // STYLES
-import OptionsDialog from "../../../styles/components/TabMobile/OptionsDialog";
+import OptionsDialog from "../../../styles/components/TabMobileStyle/OptionsDialog";
 
 const DialogOptions = () => {
   const url = useRouteMatch().url;
