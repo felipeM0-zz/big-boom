@@ -65,20 +65,24 @@ const DialogProfile = styled(Dialog)`
         flex-direction: column;
 
         .avatar-upload {
-          img {
-            width: 10rem;
-            border-radius: 5rem;
-          }
+          position: relative;
 
-          .dv-content {
-            height: 10rem;
+          > svg {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #f27474;
+            font-size: 1.25rem;
+            cursor: pointer;
+            animation: 0.4s CloseOutImage forwards;
 
-            > div {
-              display: none;
+            &.active {
+              animation: 0.4s CloseInImage forwards;
             }
           }
 
-          label {
+          > label {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -106,6 +110,19 @@ const DialogProfile = styled(Dialog)`
                 box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0.8);
               }
             }
+
+            .dv-content {
+              height: 10rem;
+
+              img {
+                width: 10rem;
+                border-radius: 5rem;
+              }
+
+              > div {
+                display: none;
+              }
+            }
           }
         }
 
@@ -115,47 +132,64 @@ const DialogProfile = styled(Dialog)`
           max-width: 425px;
 
           > div {
-            margin-top: 1rem;
-            position: relative;
-            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            input {
-              padding: 0.7rem 0;
-              width: 100%;
-              outline: none;
-              border: none;
-              border-bottom: 1px solid var(--color-secundary);
-              background-color: transparent;
+            > svg {
               color: var(--color-secundary);
-              font-size: 1.5rem;
-              transition: all 0.3s;
-
-              &.edited {
-                padding: 0.7rem 2rem 0.7rem 0;
-              }
-
-              :focus {
-                border-bottom: 2px solid #fff;
-              }
+              margin-right: 0.5rem;
             }
 
-            p {
-              font-size: 0.6rem;
-              text-align: right;
-              color: #f27474;
-              font-weight: bold;
-              margin-top: 0.2rem;
-              animation: 0.4s CloseIn forwards;
-            }
+            > div {
+              margin-top: 1rem;
+              position: relative;
+              height: 55px;
+              width: 100%;
 
-            svg {
-              position: absolute;
-              top: 11px;
-              right: 0px;
-              font-size: 1.2rem;
-              color: #f27474;
-              cursor: pointer;
-              animation: 0.4s CloseIn forwards;
+              input {
+                padding: 0.7rem 0;
+                width: 100%;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid var(--color-secundary);
+                border-radius: 0px;
+                background-color: transparent;
+                color: var(--color-secundary);
+                font-size: 1.5rem;
+                transition: all 0.1s;
+
+                &.edited {
+                  padding: 0.7rem 2rem 0.7rem 0;
+                }
+
+                :focus {
+                  border-width: 2px;
+                }
+              }
+
+              p {
+                font-size: 0.6rem;
+                text-align: right;
+                color: #f27474;
+                font-weight: bold;
+                margin-top: 0.2rem;
+                animation: 0.4s CloseIn forwards;
+              }
+
+              svg {
+                position: absolute;
+                top: 11px;
+                left: 95%;
+                font-size: 1.2rem;
+                color: #f27474;
+                cursor: pointer;
+                animation: 0.4s CloseOut forwards;
+
+                &.active {
+                  animation: 0.4s CloseIn forwards;
+                }
+              }
             }
           }
         }
@@ -167,6 +201,28 @@ const DialogProfile = styled(Dialog)`
     }
   }
 
+  @keyframes CloseInImage {
+    from {
+      left: 50%;
+      opacity: 0;
+    }
+    to {
+      left: 112%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes CloseOutImage {
+    from {
+      left: 112%;
+      opacity: 1;
+    }
+    to {
+      left: 50%;
+      opacity: 0;
+    }
+  }
+
   @keyframes CloseIn {
     from {
       transform: translate(-20px, 0px);
@@ -175,6 +231,17 @@ const DialogProfile = styled(Dialog)`
     to {
       transform: translate(0px, 0px);
       opacity: 1;
+    }
+  }
+
+  @keyframes CloseOut {
+    from {
+      left: 95%;
+      opacity: 1;
+    }
+    to {
+      left: 85%;
+      opacity: 0;
     }
   }
 
