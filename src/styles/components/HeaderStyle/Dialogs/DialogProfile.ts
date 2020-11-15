@@ -9,7 +9,7 @@ const DialogProfile = styled(Dialog)`
     .MuiDialogTitle-root {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding: 8px 24px;
-      
+
       .MuiTypography-root {
         color: var(--color-secundary);
         display: flex;
@@ -200,6 +200,61 @@ const DialogProfile = styled(Dialog)`
 
     .MuiDialogActions-root {
       border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 8px 16px;
+      position: relative;
+      height: 56px;
+
+      span {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.7rem;
+        position: absolute;
+        animation: 1.3s spanFooterIn forwards;
+        left: 16px;
+      }
+
+      div {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        cursor: pointer;
+        border-radius: 2rem;
+        align-items: center;
+        transition: all 0.1s;
+        justify-content: center;
+        background-color: #7fab66;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        right: 16px;
+
+        svg {
+          color: #fff;
+        }
+
+        :hover {
+          transform: scale(1.06, 1.06);
+        }
+        :active {
+          transform: scale(0.9, 0.9);
+        }
+
+        &.disabled {
+          background-color: #bfbaba61;
+          pointer-events: none;
+
+          svg {
+            color: #ffffff4d;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes spanFooterIn {
+    from {
+      filter: blur(3px);
+    }
+    to {
+      filter: blur(0px);
     }
   }
 
@@ -254,6 +309,11 @@ const DialogProfile = styled(Dialog)`
       margin: auto;
       max-height: 100%;
       max-width: 100%;
+    }
+    .MuiDialogContent-root.profile-content {
+      ::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { cpf, cnpj } from "cpf-cnpj-validator";
 import InputMask from "react-input-mask";
 // CONTEXTS
@@ -12,7 +12,11 @@ import {
   DialogTitle,
   Tooltip,
 } from "@material-ui/core";
-import { verifyError, verifyEditionInput } from "../../../utils/utilsProfile";
+import {
+  verifyError,
+  verifyChanges,
+  verifyEditionInput,
+} from "../../../utils/utilsProfile";
 // COMPONENTS
 import CropperDialog from "./CropperDialog";
 // ICONS
@@ -25,6 +29,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import PhoneAndroidIcon from "@material-ui/icons/PhoneAndroid";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 // STYLES
 import DialogProfile from "../../../styles/components/HeaderStyle/Dialogs/DialogProfile";
 
@@ -36,6 +41,7 @@ const ProfileDialog = () => {
   const Backup = ProfCont.prof.backup;
 
   const [image, setImage] = useState<string>("");
+  const [modified, setModified] = useState(false);
 
   // AO ESCOLHER OUTRA IMAGEM NO INPUT
   const onChange = (e: any) => {
@@ -75,6 +81,30 @@ const ProfileDialog = () => {
       }
     });
   };
+
+  // SALVAR ALTERAÇÕES
+  const saveAll = () => {
+    ProfCont.setProf({
+      prof: { ...Prof },
+      backup: { ...Prof },
+    });
+
+    DialogsCont.setDialogs({
+      ...DialogsCont.dialogs,
+      profile: false,
+    });
+  };
+
+  // VERIFICA MUDANÇAS (EDITED) E ERROS SEMPRE QUE PROF/BACKUP MUDA
+  useEffect(() => {
+    let elems = document.getElementById("dv-inputs")?.querySelectorAll("p");
+
+    setModified(verifyChanges(Prof, Backup));
+
+    elems?.forEach((v) => {
+      setModified(v.classList.contains("error"));
+    });
+  }, [Prof, Backup]);
 
   return (
     <React.Fragment>
@@ -331,7 +361,14 @@ const ProfileDialog = () => {
             </div>
           </div>
         </DialogContent>
-        <DialogActions></DialogActions>
+        <DialogActions>
+          {!modified && <span>Alterações não salvas</span>}
+          <Tooltip className={`${modified ? "disabled" : ""}`} title="Confirmar">
+            <div onClick={() => saveAll()}>
+              <CheckRoundedIcon />
+            </div>
+          </Tooltip>
+        </DialogActions>
       </DialogProfile>
 
       <CropperDialog image={image} />

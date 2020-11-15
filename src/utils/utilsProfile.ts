@@ -37,8 +37,16 @@ const verifyError = (v: string, i: string) => {
   return ["", ""];
 };
 
+const verifyChanges = (current: {}, original: {}) => {
+  let count: number = 0;
+  for (let i = 0; i < 7; i++) {
+    Object.values(current)[i] !== Object.values(original)[i] && count++;
+  }
+  return count <= 0 ? true : false;
+};
+
 const verifyEditionInput = (current: string, original: string) => {
   return current !== original ? ["edited", true] : ["", false];
 };
 
-export { verifyError, verifyEditionInput };
+export { verifyError, verifyChanges, verifyEditionInput };
