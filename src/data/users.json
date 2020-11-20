@@ -1,4 +1,4 @@
 [
-  { "name": "Felipe Moreira", "email": "felipemoreira.97@hotmail.com", "id": 1 },
-  { "name": "Alguem", "email": "emaildealguem@gmail.com", "id": 2 }
+  { "name": "Felipe Moreira", "email": "felipemoreira.97@hotmail.com", "pass":"teste123", "id": 1 },
+  { "name": "Alguem", "email": "emaildealguem@gmail.com", "pass": "teste123", "id": 2 }
 ]
